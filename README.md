@@ -1,10 +1,16 @@
 # Getting started with a React application
 
+## Presentation
+
+http://slides.com/joostlubach/react
+
+## Example app
+
 What we'll be using:
 
-- Babel to convert ES2015 JSX files to ES5 files
-- Webpack to create a single JS file for the browser
-- Webpack dev server to load our web page
+- **Babel** to convert ES2015 JSX files to ES5 files
+- **Webpack** to create a single JS file for the browser
+- **Webpack** dev server to load our web page
 
 To create this project template from scratch:
 
