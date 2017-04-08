@@ -1,0 +1,21 @@
+{
+  "name": "react-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --content-base build --inline"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "webpack": "^2.3.3"
+  },
+  "dependencies": {
+    "babel-loader": "^6.4.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3"
+  }
+}
