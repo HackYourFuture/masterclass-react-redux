@@ -10,11 +10,13 @@
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "webpack": "^2.3.3"
   },
   "dependencies": {
     "babel-loader": "^6.4.1",
     "babel-preset-react": "^6.24.1",
+    "prop-types": "^15.5.4",
     "react": "^15.5.3",
     "react-dom": "^15.5.3"
   }

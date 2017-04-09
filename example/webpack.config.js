@@ -11,5 +11,6 @@ module.exports = {
             test: /\.js$/,
             loaders: ['babel-loader']
         }]
-    }
+    },
+    devtool: 'eval'
 };

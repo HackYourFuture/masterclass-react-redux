@@ -1,4 +1,4 @@
 {
-	"presets": ["react"],
+	"presets": ["react", "stage-0"],
 	"plugins": []
 }
