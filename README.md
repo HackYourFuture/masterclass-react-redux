@@ -30,7 +30,7 @@ yarn
 yarn add -D babel-core babel-preset-react babel-loader
 
 # Add required runtime packages
-yarn add react
+yarn add react react-dom
 
 # Create .babelrc file (just copy-paste this line)
 echo -e "{\n  \"presets\": [\"react\"]\n}" >.babelrc
