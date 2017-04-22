@@ -1,38 +1,24 @@
 import React from 'react'
-import TodoList from './components/TodoList'
-import {loadTodos, saveTodos} from './persistence'
+import propTypes from 'prop-types'
+import TodoList from './TodoList'
 
 export default class App extends React.Component {
 
 	constructor() {
 		super()
-
-		this.state = {
-			todos: loadTodos()
-		}
 	}
 
 	addTodo() {
 		const newTodo = {description: ''}
-		const todos = [...this.state.todos, newTodo]
-		this.setTodos(todos)
+		this.props.onAddTodo(newTodo)
 	}
 
 	removeTodo(index) {
-		const todos = JSON.parse(JSON.stringify(this.state.todos))
-		todos.splice(index, 1)
-		this.setTodos(todos)
+		this.props.onRemoveTodo(index)
 	}
 
 	changeTodo(index, description) {
-		const todos = JSON.parse(JSON.stringify(this.state.todos))
-		todos[index].description = description
-		this.setTodos(todos)
-	}
-
-	setTodos(todos) {
-		saveTodos(todos)
-		this.setState({todos})
+		this.props.onChangeTodo(index, description)
 	}
 
 	render() {
@@ -52,7 +38,7 @@ export default class App extends React.Component {
 	renderTodoList() {
 		return (
 			<TodoList
-				todos={this.state.todos}
+				todos={this.props.todos}
 				onTodoChange={(index, description) => this.onTodoChange(index, description)}
 				onTodoRemove={(index) => this.onTodoRemove(index)}
 				onAddTodo={::this.onAddTodo}
@@ -87,4 +73,13 @@ export default class App extends React.Component {
 		this.removeTodo(index)
 	}
 
+}
+
+App.propTypes = {
+	todos: propTypes.arrayOf(propTypes.shape({
+		description: propTypes.string.isRequired,
+	})),
+	onAddTodo: propTypes.func.isRequired,
+	onRemoveTodo: propTypes.func.isRequired,
+	onChangeTodo: propTypes.func.isRequired,
 }
