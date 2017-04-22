@@ -7,7 +7,6 @@
 
 # Dist
 dist/
-build/
 
 # Caches
 .sass-cache
