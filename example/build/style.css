@@ -1,0 +1,89 @@
+body {
+	margin: 0;
+	height: 100vh;
+	background: #eee;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body, input, textarea, select, button {
+	font-family: Avenir, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #333;
+}
+
+a {
+	color: inherit;
+}
+
+ul, li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#app {
+	width: 600px;
+	margin: 20px auto;
+}
+
+h1 {
+	text-align: center;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.todo-list {
+	width: 600px;
+	background: white;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+
+.todo-list--empty {
+	padding: 16px;
+	color: #777;
+	font-size: 18px;
+	text-align: center
+}
+
+.todo-list--item {
+	overflow: hidden;
+}
+
+.todo-list--item input {
+	float: left;
+	width: calc(100% - 40px);
+	height: 40px;
+	line-height: 40px;
+	padding: 4px 8px;
+	border: none;
+}
+
+.todo-list--item--remove-button {
+	width: 40px;
+	height: 40px;
+	background: #EF1234;
+	color: white;
+	border: none;
+}
+
+.todo-list--item:not(:last-child) {
+	border-bottom: 1px solid #ccc;
+}
+
+.app--buttons {
+	text-align: center;
+	margin-top: 16px;
+}
+
+.app--add-button {
+	background: #12EF34;
+	border: none;
+	color: white;
+	border-radius: 2px;
+	padding: 4px 8px;
+}
+
