@@ -1,12 +1,9 @@
 import React from 'react'
 import propTypes from 'prop-types'
 import TodoList from './TodoList'
+import TodoDetail from './TodoDetail'
 
 export default class App extends React.Component {
-
-	constructor() {
-		super()
-	}
 
 	addTodo() {
 		const newTodo = {description: ''}
@@ -31,6 +28,8 @@ export default class App extends React.Component {
 				<div className="app--buttons">
 					{this.renderAddButton()}
 				</div>
+
+				<TodoDetail todo={this.props.selectedTodo}/>
 			</div>
 		)
 	}
@@ -79,6 +78,9 @@ App.propTypes = {
 	todos: propTypes.arrayOf(propTypes.shape({
 		description: propTypes.string.isRequired,
 	})),
+	selectedTodo: propTypes.shape({
+		description: propTypes.string.isRequired,
+	}),
 	onAddTodo: propTypes.func.isRequired,
 	onRemoveTodo: propTypes.func.isRequired,
 	onChangeTodo: propTypes.func.isRequired,

@@ -1,14 +1,14 @@
-import * as todosActions from '../actions/todos'
+import * as actions from '../actions/todos'
 
 const initialState = []
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
-    case todosActions.ADD_TODO:
+    case actions.ADD_TODO:
       return addTodo(state, action)
-    case todosActions.REMOVE_TODO:
+    case actions.REMOVE_TODO:
       return removeTodo(state, action)
-    case todosActions.CHANGE_TODO:
+    case actions.CHANGE_TODO:
       return changeTodo(state, action)
     default:
       return state

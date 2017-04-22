@@ -2,10 +2,12 @@ import { connect } from 'react-redux';
 
 import App from '../components/App';
 import * as todosActions from '../actions/todos'
+import {getSelectedTodo} from '../selectors/todo'
 
 export default connect(
     (state) => ({
-        todos: state.todos
+        todos: state.todos,
+        selectedTodo: getSelectedTodo(state),
     }),
     (dispatch) => ({
     	onAddTodo: (todo) => {
