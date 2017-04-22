@@ -1,5 +1,5 @@
 import React from 'react'
-import {shape, string, func} from 'prop-types'
+import {shape, string, func, bool} from 'prop-types'
 
 export default class TodoListItem extends React.Component {
 
@@ -16,6 +16,7 @@ export default class TodoListItem extends React.Component {
 			<li className="todo-list--item">
 				{this.renderInput()}
 				{this.renderRemoveButton()}
+				{this.renderDoneToggleButton()}
 			</li>
 		)
 	}
@@ -29,6 +30,7 @@ export default class TodoListItem extends React.Component {
 				value={todo.description}
 				onChange={::this.onDescriptionChange}
 				onKeyPress={::this.onDescriptionKeyPress}
+				onFocus={this.props.onFocus}
 			/>
 		)
 	}
@@ -37,6 +39,14 @@ export default class TodoListItem extends React.Component {
 		return (
 			<button className="todo-list--item--remove-button" onClick={::this.onRemoveClick}>
 				&times;
+			</button>
+		)
+	}
+
+	renderDoneToggleButton() {
+		return (
+			<button onClick={::this.onToggleDone}>
+				{this.props.todo.done ? 'done': 'not done'}
 			</button>
 		)
 	}
@@ -56,19 +66,27 @@ export default class TodoListItem extends React.Component {
 		this.props.onRemove()
 	}
 
+	onToggleDone() {
+		this.props.setDoneStatus(!this.props.todo.done)
+	}
 }
 
 TodoListItem.propTypes = {
 	todo: shape({
-		description: string.isRequired
+		description: string.isRequired,
+		done: bool.isRequired,
 	}).isRequired,
 
 	onDescriptionChange: func,
 	onRemove:            func,
-	onEnterPressed:      func
+	onEnterPressed:      func,
+	onFocus:				 		 func,
+	setDoneStatus:			 func,
 }
 TodoListItem.defaultProps = {
 	onDescriptionChange: () => undefined,
 	onRemove:            () => undefined,
-	onEnterPressed:      () => undefined
+	onEnterPressed:      () => undefined,
+	onFocus:     			 	 () => undefined,
+	setDoneStatus:     	 () => undefined,
 }

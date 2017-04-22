@@ -2,11 +2,12 @@ import React from 'react'
 import propTypes from 'prop-types'
 import TodoList from './TodoList'
 import TodoDetail from './TodoDetail'
+import Stats from './Stats';
 
 export default class App extends React.Component {
 
 	addTodo() {
-		const newTodo = {description: ''}
+		const newTodo = {description: '', done: false}
 		this.props.onAddTodo(newTodo)
 	}
 
@@ -19,9 +20,16 @@ export default class App extends React.Component {
 	}
 
 	render() {
+		const {todos, totalDoneTodos, totalNotDoneTodos} = this.props
 		return (
 			<div id="app">
 				<h1>To do</h1>
+
+				<Stats data={{
+					'total': todos.length,
+					'done': totalDoneTodos,
+					'not done': totalNotDoneTodos
+				}} />
 
 				{this.renderTodoList()}
 
@@ -41,6 +49,8 @@ export default class App extends React.Component {
 				onTodoChange={(index, description) => this.onTodoChange(index, description)}
 				onTodoRemove={(index) => this.onTodoRemove(index)}
 				onAddTodo={::this.onAddTodo}
+				onSelectTodo={this.props.onSelectTodo}
+				setDoneStatus={this.props.setDoneStatus}
 			/>
 		)
 	}
@@ -77,6 +87,7 @@ export default class App extends React.Component {
 App.propTypes = {
 	todos: propTypes.arrayOf(propTypes.shape({
 		description: propTypes.string.isRequired,
+		done: propTypes.bool.isRequired,
 	})),
 	selectedTodo: propTypes.shape({
 		description: propTypes.string.isRequired,
@@ -84,4 +95,6 @@ App.propTypes = {
 	onAddTodo: propTypes.func.isRequired,
 	onRemoveTodo: propTypes.func.isRequired,
 	onChangeTodo: propTypes.func.isRequired,
+	onSelectTodo: propTypes.func.isRequired,
+	setDoneStatus: propTypes.func.isRequired,
 }
