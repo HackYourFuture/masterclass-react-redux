@@ -21,31 +21,38 @@ export default class App extends React.Component {
 
 	render() {
 		const {todos, totalDoneTodos, totalNotDoneTodos} = this.props
-		return (
-			<div id="app">
-				<h1>To do</h1>
 
-				<Stats data={{
-					'total': todos.length,
-					'done': totalDoneTodos,
-					'not done': totalNotDoneTodos
-				}} />
+		if (todos.loading) {
+			return <div>Loading todos</div>
+		} else if (todos.error) {
+			return <div>Error loading todos: {todos.error}</div>
+		} else {
+			return (
+				<div id="app">
+					<h1>To do</h1>
 
-				{this.renderTodoList()}
+					<Stats data={{
+						'total': todos.list.length,
+						'done': totalDoneTodos,
+						'not done': totalNotDoneTodos
+					}} />
 
-				<div className="app--buttons">
-					{this.renderAddButton()}
+					{this.renderTodoList()}
+
+					<div className="app--buttons">
+						{this.renderAddButton()}
+					</div>
+
+					<TodoDetail todo={this.props.selectedTodo}/>
 				</div>
-
-				<TodoDetail todo={this.props.selectedTodo}/>
-			</div>
-		)
+			)
+		}
 	}
 
 	renderTodoList() {
 		return (
 			<TodoList
-				todos={this.props.todos}
+				todos={this.props.todos.list}
 				onTodoChange={(index, description) => this.onTodoChange(index, description)}
 				onTodoRemove={(index) => this.onTodoRemove(index)}
 				onAddTodo={::this.onAddTodo}

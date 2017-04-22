@@ -8,6 +8,7 @@ import reducers from './reducers'
 import * as todosActions from './actions/todos'
 
 const store = configureStore(reducers)
+store.dispatch(todosActions.fetchTodos())
 
 render(
 	<Provider store={store}>
