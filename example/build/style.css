@@ -35,6 +35,16 @@ h1 {
 	font-weight: 500;
 }
 
+h2 {
+	font-size: 17px;
+	font-weight: 500;
+}
+
+h3 {
+	font-size: 14px;
+	font-weight: 500;
+}
+
 .todo-list {
 	width: 600px;
 	background: white;
@@ -86,4 +96,3 @@ h1 {
 	border-radius: 2px;
 	padding: 4px 8px;
 }
-

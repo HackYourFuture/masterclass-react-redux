@@ -50,6 +50,8 @@ export default class TodoList extends React.Component {
 				onDescriptionChange={this.onTodoChange.bind(this, index)}
 				onRemove={this.onTodoRemove.bind(this, index)}
 				onEnterPressed={this.onTodoEnterPressed.bind(this, index)}
+				onFocus={this.onSelectTodo.bind(this, index)}
+				setDoneStatus={this.setDoneStatus.bind(this, index)}
 			/>
 		)
 	}
@@ -70,19 +72,29 @@ export default class TodoList extends React.Component {
 		}
 	}
 
+	onSelectTodo(index) {
+		this.props.onSelectTodo(index)
+	}
+
+	setDoneStatus(index, done) {
+		this.props.setDoneStatus(index, done)
+	}
 }
 
 const emptyFunction = () => undefined
 
 TodoList.propTypes = {
 	todos: propTypes.arrayOf(propTypes.shape({
-		description: propTypes.string.isRequired
+		description: propTypes.string.isRequired,
+		done: propTypes.bool.isRequired,
 	})),
 	focusOnLastTodo: propTypes.bool,
 
 	onTodoChange: propTypes.func,
 	onTodoRemove: propTypes.func,
-	onAddTodo:    propTypes.func
+	onAddTodo:    propTypes.func,
+	onSelectTodo: propTypes.func,
+	setDoneStatus:propTypes.func,
 }
 
 TodoList.defaultProps = {
@@ -91,5 +103,7 @@ TodoList.defaultProps = {
 
 	onTodoChange: emptyFunction,
 	onTodoRemove: emptyFunction,
-	onAddTodo:    emptyFunction
+	onAddTodo:    emptyFunction,
+	onSelectTodo: emptyFunction,
+	setDoneStatus:emptyFunction,
 }
